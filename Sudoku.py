@@ -2,7 +2,7 @@ import argparse
 
 from Tkinter import *
 
-BOARDS = ['easy', 'medium', 'hard', 'harder']  # Available sudoku boards
+BOARDS = ['easy', 'medium', 'hard', 'expert']  # Available sudoku boards
 MARGIN = 20  # Pixels around the board
 SIDE = 50  # Width of every board cell.
 WIDTH = HEIGHT = MARGIN * 2 + SIDE * 9  # Width and height of the whole board
