@@ -2,11 +2,10 @@ import argparse
 
 from Tkinter import *
 
-BOARDS = ['easy', 'medium', 'hard', 'harder']  # Available sudoku boards
+BOARDS = ['easy', 'medium', 'hard', 'expert']  # Available sudoku boards
 MARGIN = 20  # Pixels around the board
 SIDE = 50  # Width of every board cell.
 WIDTH = HEIGHT = MARGIN * 2 + SIDE * 9  # Width and height of the whole board
-
 
 class SudokuError(Exception):
     """
@@ -48,21 +47,28 @@ class SudokuUI(Frame):
 
     def __initUI(self):
         self.parent.title("Sudoku")
-        self.pack(fill=BOTH)
+        self.grid()
         self.canvas = Canvas(self,
                              width=WIDTH,
                              height=HEIGHT)
-        self.canvas.pack(fill=BOTH, side=TOP)
+        self.canvas.grid(rowspan=9, columnspan=9, sticky=S+W+N+E)
         clear_button = Button(self,
                               text="Clear answers",
                               command=self.__clear_answers)
-        clear_button.pack(fill=BOTH, side=BOTTOM)
+        clear_button.grid(row=11, columnspan=9, sticky=E+W)
 
         self.__draw_grid()
         self.__draw_puzzle()
+        self.__draw_selection()
 
         self.canvas.bind("<Button-1>", self.__cell_clicked)
         self.canvas.bind("<Key>", self.__key_pressed)
+
+    def __draw_selection(self):
+        for i in range(0, 9):
+            self.selectNumber = Button(self, text=i+1)
+            self.selectNumber.grid(row=10, column=i, sticky=E+W)
+
 
     def __draw_grid(self):
         """
@@ -252,5 +258,5 @@ if __name__ == '__main__':
 
         root = Tk()
         SudokuUI(root, game)
-        root.geometry("%dx%d" % (WIDTH, HEIGHT + 40))
+        root.geometry("%dx%d" % (WIDTH, HEIGHT + 60))
         root.mainloop()
