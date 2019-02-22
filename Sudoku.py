@@ -2,7 +2,10 @@ import argparse
 
 from Tkinter import *
 
-BOARDS = ['easy', 'medium', 'hard', 'expert']  # Available sudoku boards
+BOARDS = ['easy1', 'easy2', 'easy3', 'easy4', 'easy5', 'easy6', 'easy7', 'easy8', 'easy9', 'easy10', 'medium1', 'medium2',
+          'medium3', 'medium4', 'medium5', 'medium6', 'medium7', 'medium8', 'medium9', 'medium10', 'hard1', 'hard2', 'hard3',
+          'hard4', 'hard5', 'hard6', 'hard7', 'hard8', 'hard9', 'hard10', 'expert1', 'expert2', 'expert3', 'expert4',
+          'expert5', 'expert6', 'expert7', 'expert8', 'expert9', 'expert10']  # Available sudoku boards
 MARGIN = 20  # Pixels around the board
 SIDE = 50  # Width of every board cell.
 WIDTH = HEIGHT = MARGIN * 2 + SIDE * 9  # Width and height of the whole board
@@ -23,7 +26,7 @@ def parse_arguments():
     """
     arg_parser = argparse.ArgumentParser()
     arg_parser.add_argument("--board",
-                            help="Desired board name",
+                            help="Desired board name: easy(1-10), medium(1-10), hard(1-10), expert(1-10)",
                             type=str,
                             choices=BOARDS,
                             required=True)
