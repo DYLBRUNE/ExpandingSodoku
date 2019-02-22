@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8a861f9-4d80-4ebc-b5e5-a15c40524de9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sudoku.py" beforeDir="false" afterPath="$PROJECT_DIR$/Sudoku.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easy/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/expert/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hard/1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/medium/1" beforeDir="false" />
-    </list>
+    <list default="true" id="e8a861f9-4d80-4ebc-b5e5-a15c40524de9" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
