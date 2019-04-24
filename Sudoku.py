@@ -61,13 +61,18 @@ class SudokuUI(Frame):
         self.__draw_puzzle()
         self.__draw_selection()
 
-        self.canvas.bind("<Button-1>", self.__cell_clicked)
+        self.canvas.bind("<Button-1>", self.__cell_clicked, self.__selection_clicked)
         self.canvas.bind("<Key>", self.__key_pressed)
 
     def __draw_selection(self):
-        for i in range(0, 9):
+        for i in xrange(0, 9):
             self.selectNumber = Button(self, text=i+1)
             self.selectNumber.grid(row=10, column=i, sticky=E+W)
+
+    def __selection_clicked(self, event):
+        self.x, self.y = event.x, event.y
+        print(self.x, self.y)
+
 
 
     def __draw_grid(self):
