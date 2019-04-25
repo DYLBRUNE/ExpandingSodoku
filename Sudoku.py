@@ -60,27 +60,65 @@ class SudokuUI(Frame):
         self.__draw_grid()
         self.__draw_puzzle()
         self.__draw_selection()
+        # self.__draw_bgcolor()
 
-        self.canvas.bind("<Button-1>", self.__cell_clicked, self.__selection_clicked)
+        self.canvas.bind("<Button-1>", self.__cell_clicked)
         self.canvas.bind("<Key>", self.__key_pressed)
 
+    """def dark_mode(self, boolean):
+        if boolean:
+            return root.configure(background="black")
+        return root.configure(background="white")
+
+    def __draw_bgcolor(self):
+            dark = Button(self, text="Dark Mode", command=lambda: dark_mode(True))
+            dark.grid(row=12, column=0)
+            light = Button(self, text="Light Mode", command=root.configure(background="white"))
+            light.grid(row=12, column=8)
+    """
+
     def __draw_selection(self):
-        for i in xrange(0, 9):
-            self.selectNumber = Button(self, text=i+1)
-            self.selectNumber.grid(row=10, column=i, sticky=E+W)
+        one = Button(self, text="1", command=lambda: self.selection_clicked(1))
+        one.grid(row=10, column=0, sticky="ew")
+        two = Button(self, text="2", command=lambda: self.selection_clicked(2))
+        two.grid(row=10, column=1, sticky="ew")
+        three = Button(self, text="3", command=lambda: self.selection_clicked(3))
+        three.grid(row=10, column=2, sticky="ew")
+        four = Button(self, text="4", command=lambda: self.selection_clicked(4))
+        four.grid(row=10, column=3, sticky="ew")
+        five = Button(self, text="5", command=lambda: self.selection_clicked(5))
+        five.grid(row=10, column=4, sticky="ew")
+        six = Button(self, text="6", command=lambda: self.selection_clicked(6))
+        six.grid(row=10, column=5, sticky="ew")
+        seven = Button(self, text="7", command=lambda: self.selection_clicked(7))
+        seven.grid(row=10, column=6, sticky="ew")
+        eight = Button(self, text="8", command=lambda: self.selection_clicked(8))
+        eight.grid(row=10, column=7, sticky="ew")
+        nine = Button(self, text="9", command=lambda: self.selection_clicked(9))
+        nine.grid(row=10, column=8, sticky="ew")
 
-    def __selection_clicked(self, event):
-        self.x, self.y = event.x, event.y
-        print(self.x, self.y)
+        #for i in xrange(0, 9):
+           # self.selectNumber = Button(self, text=i+1, command=lambda: self.selection_clicked(i+1))
+           # self.selectNumber.grid(row=10, column=i, sticky="ew")
 
+    def selection_clicked(self, number):
+        if self.game.game_over:
+            return
 
+        if self.row >= 0 and self.col >= 0:
+            self.game.puzzle[self.row][self.col] = number
+            self.col, self.row = -1, -1
+            self.__draw_puzzle()
+            self.__draw_cursor()
+            if self.game.check_win():
+                self.__draw_victory()
 
     def __draw_grid(self):
         """
-        Draws grid divided with blue lines into 3x3 squares
+        Draws grid divided with black lines into 3x3 squares
         """
         for i in xrange(10):
-            color = "blue" if i % 3 == 0 else "gray"
+            color = "black" if i % 3 == 0 else "gray"
 
             x0 = MARGIN + i * SIDE
             y0 = MARGIN
@@ -140,7 +178,7 @@ class SudokuUI(Frame):
         if self.game.game_over:
             return
         x, y = event.x, event.y
-        if (MARGIN < x < WIDTH - MARGIN and MARGIN < y < HEIGHT - MARGIN):
+        if MARGIN < x < WIDTH - MARGIN and MARGIN < y < HEIGHT - MARGIN:
             self.canvas.focus_set()
 
             # get row and col numbers from x,y coordinates
@@ -149,6 +187,7 @@ class SudokuUI(Frame):
             # if cell was selected already - deselect it
             if (row, col) == (self.row, self.col):
                 self.row, self.col = -1, -1
+
             elif self.game.puzzle[row][col] == 0:
                 self.row, self.col = row, col
         else:
